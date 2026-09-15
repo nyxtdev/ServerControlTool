@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "sct.impl.host/models/user";
+
+service UserCrudService {
+    rpc GetListUser(ListUserRequest) returns (ListUserResponse);
+}
+
+message ListUserRequest {}
+
+message ListUserResponse {
+  repeated User users = 1;
+}
+
+message User {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+
+  AccessRights AccessRights = 4;
+
+  int64 updated_at = 5;
+  int64 created_at = 6;
+}
+
+message AccessRights {
+  bool is_admin = 1;
+}
